@@ -1,0 +1,31 @@
+﻿@model PagedList.IPagedList<Rivi>
+@using PagedList.Mvc;
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<table class="table table-striped">
+    <tr>
+        <th>ID</th>
+        <th>Esine</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ID</td>
+            <td>@item.Esine</td>
+        </tr>
+    }
+</table>
+<br />
+Sivu @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+<br />
+@if (Model.PageNumber > 0 && Model.PageNumber < Model.PageCount)
+{
+    @Html.ActionLink("Seuraava sivu", "Index", "Home", new { sivu = Model.PageNumber + 1 })
+    <br />
+}
+@if (Model.PageNumber > 1)
+{
+    @Html.ActionLink("Edellinen sivu", "Index", "Home", new { sivu = Model.PageNumber - 1 })
+}
