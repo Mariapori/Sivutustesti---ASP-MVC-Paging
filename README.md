@@ -1,4 +1,4 @@
-# Sivutustesti---ASP-MVC-Paging
+# Sivutustesti - ASP-MVC-Paging
 ASP MVC NET 5 - Paging - Sivutus
 
 Example / Esimerkki
