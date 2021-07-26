@@ -1,0 +1,31 @@
+﻿@using PagedList.Mvc;
+@{
+    ViewData["Title"] = "Kohta";
+    PagedList.IPagedList<Rivi> items = ViewBag.joo;
+}
+
+<table class="table table-striped">
+    <tr>
+        <th>ID</th>
+        <th>Esine</th>
+    </tr>
+    @foreach (var item in items)
+    {
+        <tr>
+            <td>@item.ID</td>
+            <td>@item.Esine</td>
+        </tr>
+    }
+</table>
+<br />
+Sivu @(items.PageCount < items.PageNumber ? 0 : items.PageNumber) / @items.PageCount
+<br />
+@if (items.PageNumber > 0 && items.PageNumber < items.PageCount)
+{
+    @Html.ActionLink("Seuraava sivu", "Index", "Home", new { sivu = items.PageNumber + 1 })
+    <br />
+}
+@if (items.PageNumber > 1)
+{
+    @Html.ActionLink("Edellinen sivu", "Index", "Home", new { sivu = items.PageNumber - 1 })
+}

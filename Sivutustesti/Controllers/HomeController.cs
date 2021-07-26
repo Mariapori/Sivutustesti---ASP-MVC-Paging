@@ -32,6 +32,20 @@ namespace Sivutustesti.Controllers
             return View(rivit.ToPagedList(sivu.GetValueOrDefault(), 5));
         }
 
+        public IActionResult Kohta(int? sivu = 1)
+        {
+            List<Rivi> rivit = new List<Rivi>();
+
+            for (int i = 50; i <= 100; i++)
+            {
+                rivit.Add(new Rivi { ID = i, Esine = "Esine " + i.ToString() });
+            }
+
+            ViewBag.joo = rivit.ToPagedList(sivu.GetValueOrDefault(), 10);
+
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
